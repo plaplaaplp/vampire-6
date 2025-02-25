@@ -1,0 +1,66 @@
+#------------------------------------------
+# Dipole Fields (demagnetising fields)
+#------------------------------------------
+
+#------------------------------------------
+# Creation attributes:
+#------------------------------------------
+#------------------------------------------
+# System Dimensions(thin film):
+#------------------------------------------
+dimensions:unit-cell-size = 3.54 !A
+dimensions:system-size-x = 20 !nm
+dimensions:system-size-y = 20 !nm
+dimensions:system-size-z = 1 !nm
+
+
+#-------------------------------------------
+#cylinder system
+#-------------------------------------------
+
+#create:cylinder
+#dimensions:particle-size = 4 !nm
+#dimensions:particle-shape-factor-x = 0.5
+#dimensions:particle-shape-factor-y = 0.5
+#dimensions:particle-shape-factor-z = 2
+
+#------------------------------------------
+# Material Files(Permalloy):
+#------------------------------------------
+material:file=permalloy.mat
+
+
+#------------------------------------------
+# Simulation attributes:
+#------------------------------------------
+sim:temperature=0.0
+sim:total-time-steps=300000
+sim:time-step=1.0E-15
+
+
+#------------------------------------------
+#Dipole Solver:
+#------------------------------------------
+
+cells:macro-cell-size = 10.1!A #cubic macrocell side length
+dipole:solver = tensor    #choose tensor , macrocell or atomistic
+dipole:field-update-rate = 100
+dipole:cutoff-radius = 2 # in units of cell size.
+
+
+#------------------------------------------
+# Program and integrator details
+#------------------------------------------
+sim:program=time-series
+sim:integrator=llg-heun
+
+#------------------------------------------
+# data output
+#------------------------------------------
+output:real-time
+output:magnetisation
+
+screen:total-time-steps
+screen:magnetisation
+
+config:atoms
